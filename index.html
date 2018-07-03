@@ -1,96 +1,81 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<html>
+  <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+ 	<link href="https://fonts.googleapis.com/css?family=Amatic+SC|Gloria+Hallelujah|Orbitron" rel="stylesheet">
+ 	<link rel="stylesheet" href="assets/css/normalize.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <title>Document</title>
-</head>
-<body>
-    <div class="container">	
-		<div class="row">
-			<div class="jumbotron header">
-				<h1 class="text-center">The Miami Train Scheduler</h1>
-			
-			</div>
-		</div>
-		<div class="container">
+	<link rel="stylesheet" href="assets/css/main.css">
+	<!-- FireBase SDK or library-->
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+    <title>TrainSchedule</title>
+  </head>
+  <body>
+<div class="container bg-dark">
+  <h4 style="padding-top: 20px; color:#d1d0d0">Train Schedule</h4> 
+  <div class="col-md bg-light"> 
+      <div class="row">            
+          <div class="table-responsive">          
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Train Name</th>
+                    <th>Destination</th>
+                    <th>Frecuency (Minutes):</th>
+                    <th>Next Arrival:</th>
+                    <th>Minutes Away:</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Cantabria's Express</td>
+                    <td>Santiago de Compostela</td>
+                    <td>60</td>
+                    <td>03:40 am</td>
+                    <td>8</td>
+                  </tr>
+                </tbody>
+              </table>
+          </div>
+      </div> 
+  </div>
+  <h4 style="padding-top: 20px; color:#a7a4a4">Add a New Train</h4> 
+  <div class="col-md bg-light">
+        <div class="form">
+          <form id="formID">
+            <div class="form-group">
+              <label for="TrainName"><h4 style="padding-top: 20px;">Train Name:</h4></label>
+              <input type="text" class="form-control" id="TrainName" name="TrainName" placeholder="Train Name">
+            </div>
+            <div class="form-group">
+              <label for="Destination"><h4>Destination:</h4></label>
+              <input type="text" class="form-control" id="Destination"  name="Destination" placeholder="Destination">
+            </div>
+            <div class="form-group">
+              <label for="MilitaryTime" ><h4>First Train Time:</h4></label>
+              <input type="time" class="form-control" id="MilitaryTime" name="MilitaryTime" placeholder="HH:MM" value="">
+            </div>
+            <div class="form-group">
+              <label for="Frecuency"><h4>Frecuency ( Minutes ):</h4></label>
+              <input type="text" class="form-control" id="Frecuency" name="Frecuency" placeholder="Minutes">
+            </div>
+            <div class="col-auto" style="padding-bottom: 20px;">
+              <button id="submit" type="submit" class="btn btn-primary mb-2">Submit:</button>
+          </div>
+          </form>
+        </div>
+  </div>
+</div>
 
 
-			<div class="row">
-			</div>
-			
-			<div class="row">
-				<div class="newTrainInput col-md-9">
-						
-				<div class="panel panel-success">
-						<div class="panel-heading col-md-12">
-						  
-							<h4 class="col-md-6" id="clock"><span id = "currentTime"></span></h4>
-						</div>
-						<div class="panel-body">
-							<table class="table table-striped">
-								<thead>
-									<tr>
-										<th>Train Name</th>
-										<th>Destination</th>
-										<th>Frequency (min.)</th>
-										<th>Next Arrival</th>
-										<th>Minutes Away</th>
-									</tr>
-								</thead>
-								<tbody id = "schedule">
-									
-								</tbody>
-	  
-							</table>			
-					  </div>
-				  </div>
-				</div>
-				<div class="newTrainInput col-md-3">
-					<div class="panel panel-success">
-						  <div class="panel-heading">
-							  <h4 id = addTitle>Add New Train</h4>
-							  <h4 id = "add"><i id = "symbol" class = "fa fa-plus fa-lg"></i></h4>
-	
-	
-						  </div>
-						  <div class="panel-body" id="newTrainSchedule" data-status = "hide" > 	
-	
-							<div role="form" class="form-group">
-								
-								<label for="Search">Train Name:</label>
-								<input type="text" class="form-control" id="trainName-input" placeholder="" required>
-										
-								<label for="Destination">Destination:</label>
-								<input type="text" class="form-control" id="destination-input">
-							
-								<label for="Start Time">First Train Arrival: <span id= timeFormat>(Time Format HH:MM)</span></label>
-								<input type="text" class="form-control" id="startTime-input" >
-							
-								<label for="Frequency">Frequency:</label>
-								<input type="number" class="form-control" id="frequency-input">
-												
-								<button class="btn btn-primary" id="newTrain"></i>Submit</button>
-										
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
 
-		  </div>
 
-		
-
-	<!-- Firebase -->
-	<script src="https://www.gstatic.com/firebasejs/4.3.0/firebase.js"></script>
-
-  	<!-- Moment JS -->
-  	<script text="text/javascript" src="assets/javascript/moments.js"></script>
-  	<!-- Local Javascript -->
-  	<script type="text/javascript" src="assets/javascript/app.js"></script>
-</body>
+  	<!--SCRIPTS-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+	<script type="text/javascript" src="assets/js/main.js"></script>
+  </body>
 </html>
